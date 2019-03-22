@@ -15,7 +15,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * Currently not in use
  */
 public class Climber extends Subsystem {
   // Put methods for controlling this subsystem

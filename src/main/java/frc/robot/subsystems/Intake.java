@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -21,6 +23,8 @@ public class Intake extends Subsystem {
 
   private Spark motor = RobotMap.intakeSpark;
 
+  private DoubleSolenoid dumpPiston = RobotMap.dumpDoubleSolenoid;
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -28,9 +32,18 @@ public class Intake extends Subsystem {
   }
 
   public void set(double speed){
-      System.out.println("outtake running at " + speed);
+      //System.out.println("outtake running at " + speed);
       speed = Robot.safety(speed);
       motor.set(-speed);
+  }
+
+  public void toggleDump(){
+      if(dumpPiston.get() == Value.kForward){
+        dumpPiston.set(Value.kReverse);
+      }
+      else{
+          dumpPiston.set(Value.kForward);
+      }
   }
 
   public void stop(){

@@ -112,16 +112,16 @@ public class OI {
     	 */
     	mainB.whileHeld(new Outtake());
         mainX.whileHeld(new IntakeCmd());
-    	mainY.whenPressed(new ToggleFoldingClimber());
-        mainA.whileHeld(new ToggleClamp());
+    	mainY.whenPressed(new ToggleDumpPiston());
+        mainA.whenPressed(new ToggleLiftPosition());
       
         /*
          * This is where you assign functions to the co joystick controller
          */
         
-        coX.whileHeld(new IntakeCmd());
-        coY.whileHeld(new ToggleLiftPosition());
-        coB.whileHeld(new Outtake());
+        coX.whileHeld(new Outtake());
+        coY.whenPressed(new ToggleLiftPosition());
+        coB.whileHeld(new IntakeCmd());
         //coA.whileHeld(new LiftLowerCmd());
 
         System.out.println("OI Started");

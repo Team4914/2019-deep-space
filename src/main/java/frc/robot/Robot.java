@@ -185,9 +185,9 @@ public class Robot extends TimedRobot {
 
         operateLift();
         operateDrivetrain();
-        //operateIntake();
+        operateIntake();
 
-        m_climber.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
+        //m_climber.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
         //m_intake.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
     }
     /**
@@ -201,14 +201,14 @@ public class Robot extends TimedRobot {
      * Operates robot drivetrain
      */
     public void operateDrivetrain(){
-        m_drivetrain.tankDrive(m_oi.getMainYLeft() + m_oi.getCoYLeft() * 0.3, m_oi.getMainYRight() + m_oi.getCoYRight() * 0.3);
+        m_drivetrain.tankDrive(m_oi.getMainYLeft() + m_oi.getCoYLeft() * 0.5, m_oi.getMainYRight() + m_oi.getCoYRight() * 0.5);
     }
 
     /**
      * Operates robot intake
      */
     public void operateIntake(){
-        m_intake.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
+        m_intake.set(m_oi.getMainTRight() - m_oi.getMainTLeft() + 0.2);
     }
     /**
      * This function is called periodically during test mode.

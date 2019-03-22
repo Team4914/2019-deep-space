@@ -34,6 +34,8 @@ public class RobotMap {
     //Pneumatics
     public static Compressor compressor;
     public static DoubleSolenoid liftDoubleSolenoid;
+    public static DoubleSolenoid dumpDoubleSolenoid;
+
     public static DoubleSolenoid climbDoubleSolenoid;
     public static DoubleSolenoid clampDoubleSolenoid;
 
@@ -44,8 +46,8 @@ public class RobotMap {
     public static void init(){
         //todo
         //Drivetrain
-        right = new VictorSP(3);
-        left = new VictorSP(1);
+        right = new VictorSP(1);
+        left = new VictorSP(3);
         
         //Lift
         liftTalon = new TalonSRX(2);
@@ -57,9 +59,8 @@ public class RobotMap {
         compressor = new Compressor();
 
         liftDoubleSolenoid = new DoubleSolenoid(0, 1);
+        dumpDoubleSolenoid = new DoubleSolenoid(2, 3);
         
-        climbDoubleSolenoid = new DoubleSolenoid(2, 3);
-        clampDoubleSolenoid = new DoubleSolenoid(4, 5);
         //Climb
         climberSparkLeft = new Spark(8);
         climberSparkLeft.setInverted(false);
