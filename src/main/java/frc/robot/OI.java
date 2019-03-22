@@ -111,7 +111,7 @@ public class OI {
     	 * This is where you assign functions to the main joystick controller
     	 */
     	mainB.whileHeld(new Outtake());
-        mainX.whileHeld(new IntakeCmd());
+        mainX.whileHeld(new ToggleIntakeThrottle());
     	mainY.whenPressed(new ToggleDumpPiston());
         mainA.whenPressed(new ToggleLiftPosition());
       

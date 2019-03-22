@@ -30,7 +30,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
     /* 
-     * temporary code
+     * 'temporary' code
      */
 
     public static Lift m_lift;
@@ -45,7 +45,16 @@ public class Robot extends TimedRobot {
     private DigitalInput[] m_DIO;
     static Thread m_visionThread;
     
+    //Operating variables
     boolean limitState = true;
+    public static double leftDriveSpeed = 0;
+    public static double rightDriveSpeed = 0;
+    public static double liftSpeed = 0;
+    public static double climbSpeed = 0;
+    public static double intakeSpeed = 0;
+
+    public static boolean passiveIntake = false;
+
 
     //temporary testing code
     boolean aPress = false;
@@ -187,28 +196,44 @@ public class Robot extends TimedRobot {
         operateDrivetrain();
         operateIntake();
 
+        flushOVars();
+
         //m_climber.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
         //m_intake.set(m_oi.getMainTRight() - m_oi.getMainTLeft());
     }
+
+    public void flushOVars(){
+        leftDriveSpeed = 0;
+        rightDriveSpeed = 0;
+        liftSpeed = 0;
+        climbSpeed = 0;
+        intakeSpeed = 0;
+    }
+
     /**
      * Operates robot lift
      */
     public void operateLift(){
-        m_lift.lift(m_oi.getCoTRight() - m_oi.getCoTLeft());
+        liftSpeed += m_oi.getCoTRight() - m_oi.getCoTLeft();
+        m_lift.lift(liftSpeed);
     }
 
     /**
      * Operates robot drivetrain
      */
     public void operateDrivetrain(){
-        m_drivetrain.tankDrive(m_oi.getMainYLeft() + m_oi.getCoYLeft() * 0.5, m_oi.getMainYRight() + m_oi.getCoYRight() * 0.5);
+        leftDriveSpeed += m_oi.getMainYLeft() + m_oi.getCoYLeft() * 0.5;
+        rightDriveSpeed += m_oi.getMainYRight() + m_oi.getCoYRight() * 0.5;
+        m_drivetrain.tankDrive(leftDriveSpeed, rightDriveSpeed);
     }
 
     /**
      * Operates robot intake
      */
     public void operateIntake(){
-        m_intake.set(m_oi.getMainTRight() - m_oi.getMainTLeft() + 0.2);
+        intakeSpeed += m_oi.getMainTRight() - m_oi.getMainTLeft();
+        intakeSpeed += 0.2;
+        m_intake.set(intakeSpeed);
     }
     /**
      * This function is called periodically during test mode.
