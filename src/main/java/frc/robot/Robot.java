@@ -12,7 +12,7 @@ import org.opencv.core.Mat;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -78,7 +78,9 @@ public class Robot extends TimedRobot {
         }
         //m_bigSwitch1 = new DigitalInput(3);
         //aam_bigSwitch2 = new DigitalInput(1);
+        
 
+        /*
         m_visionThread = new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setFPS(30);
@@ -101,7 +103,7 @@ public class Robot extends TimedRobot {
                 outputStream.putFrame(mat);
             }
         });
-        
+            */
 
 /*
         //test code
@@ -144,11 +146,11 @@ public class Robot extends TimedRobot {
                 }
 
             }
-        });*/
+        });*//*
         m_visionThread.setDaemon(true);
         m_visionThread.start();
-
-
+        */
+        CameraServer.getInstance().startAutomaticCapture();
     }
 
     @Override
@@ -175,6 +177,12 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+
+        operateLift();
+        operateDrivetrain();
+        operateIntake();
+
+        flushOVars();
     }
 
     public void disabledPeriodic(){
@@ -232,7 +240,7 @@ public class Robot extends TimedRobot {
      */
     public void operateIntake(){
         intakeSpeed += m_oi.getMainTRight() - m_oi.getMainTLeft();
-        intakeSpeed += 0.2;
+        if(passiveIntake) intakeSpeed += 0.2;
         m_intake.set(intakeSpeed);
     }
     /**

@@ -74,4 +74,7 @@ public class Lift extends Subsystem {
       compressor.stop();
   }
 
+  public void resetPistons(){
+      pistons.set(Value.kReverse);
+  }
 }

@@ -111,7 +111,7 @@ public class OI {
     	 * This is where you assign functions to the main joystick controller
     	 */
     	mainB.whileHeld(new Outtake());
-        mainX.whileHeld(new ToggleIntakeThrottle());
+        mainX.whenPressed(new ToggleIntakeThrottle());
     	mainY.whenPressed(new ToggleDumpPiston());
         mainA.whenPressed(new ToggleLiftPosition());
       
@@ -122,6 +122,7 @@ public class OI {
         coX.whileHeld(new Outtake());
         coY.whenPressed(new ToggleLiftPosition());
         coB.whileHeld(new IntakeCmd());
+        coA.whenPressed(new ToggleIntakeThrottle());
         //coA.whileHeld(new LiftLowerCmd());
 
         System.out.println("OI Started");
@@ -175,7 +176,6 @@ public class OI {
     /*
      * Joystick object accessor methods
      */
-
     public Joystick getMainJoystick() {
         return mainJoystick;
     }

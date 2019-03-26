@@ -46,6 +46,10 @@ public class Intake extends Subsystem {
       }
   }
 
+  public void resetPistons(){
+      dumpPiston.set(Value.kReverse);
+  }
+
   public void stop(){
       set(0);
   }
