@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class ClimberInCmd extends Command {
   public ClimberInCmd() {
@@ -24,7 +25,7 @@ public class ClimberInCmd extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbSpeed += 0.5;
+    Robot.climbSpeed += RobotConstants.climberSpeed;
   }
 
   // Make this return true when this Command no longer needs to run execute()
