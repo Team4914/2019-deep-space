@@ -119,10 +119,11 @@ public class OI {
          * This is where you assign functions to the co joystick controller
          */
         
-        coX.whileHeld(new Outtake());
+        //coX.whileHeld(new Outtake());
         coY.whenPressed(new ToggleLiftPosition());
         coB.whileHeld(new IntakeCmd());
         coA.whenPressed(new ToggleIntakeThrottle());
+        coBumperLeft.whenPressed(new ToggleDumpPiston());
         //coA.whileHeld(new LiftLowerCmd());
 
         System.out.println("OI Started");

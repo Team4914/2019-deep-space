@@ -62,10 +62,10 @@ public class RobotMap {
         dumpDoubleSolenoid = new DoubleSolenoid(2, 3);
         
         //Climb
-        climberSparkLeft = new Spark(8);
+        climberSparkLeft = new Spark(6);
         climberSparkLeft.setInverted(false);
 
-        climberSparkRight = new Spark(7);
+        climberSparkRight = new Spark(5);
         climberSparkRight.setInverted(true);
         /*
         rightFront = new VictorSP(1);

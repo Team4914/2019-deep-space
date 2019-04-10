@@ -241,7 +241,7 @@ public class Robot extends TimedRobot {
     public void operateIntake(){
         intakeSpeed += m_oi.getMainTRight() - m_oi.getMainTLeft();
         if(passiveIntake) intakeSpeed += 0.2;
-        m_intake.set(intakeSpeed);
+        m_intake.set(intakeSpeed *0.8);
     }
     /**
      * This function is called periodically during test mode.
