@@ -251,10 +251,23 @@ public class Robot extends TimedRobot {
     }
 
     static public double safety(double speed){
-        return Math.min(speed, 1.0);
+        if(speed < 0){
+            return Math.max(speed, -1);
+        }
+        else{
+            return Math.min(speed, 1);
+        }
     }
     
+    /** 
+     * @param max Absolute value of max and min speeds
+    */
     static public double safety(double speed, double max){
-        return Math.min(speed, max);
+        if(speed < 0){
+            return Math.max(speed, -max);
+        }
+        else{
+            return Math.min(speed, max);
+        }
     }
 }
