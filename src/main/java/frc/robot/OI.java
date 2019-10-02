@@ -110,11 +110,12 @@ public class OI {
     	/*
     	 * This is where you assign functions to the main joystick controller
     	 */
-    	mainB.whileHeld(new Outtake());
+
         mainX.whenPressed(new ToggleIntakeThrottle());
-    	mainY.whenPressed(new ToggleDumpPiston());
         mainA.whenPressed(new ToggleLiftPosition());
-      
+        mainY.whenPressed(new ToggleDumpPiston());
+        mainBumperRight.whenPressed(new ToggleDumpPiston());
+        mainBumperLeft.whileHeld(new DriveStraight());
         /*
          * This is where you assign functions to the co joystick controller
          */
@@ -124,6 +125,7 @@ public class OI {
         coB.whileHeld(new IntakeCmd());
         coA.whenPressed(new ToggleIntakeThrottle());
         coBumperLeft.whenPressed(new ToggleDumpPiston());
+        coBumperRight.whileHeld(new DriveStraight());
         //coA.whileHeld(new LiftLowerCmd());
 
         System.out.println("OI Started");

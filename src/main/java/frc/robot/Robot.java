@@ -156,6 +156,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
        // System.out.println("3: " + m_bigSwitch1.get();
+       /*
         boolean cLimitState = m_DIO[1].get();
         if(cLimitState != limitState){
             limitState = cLimitState;
@@ -164,11 +165,13 @@ public class Robot extends TimedRobot {
         if(m_oi.getA() != aPress){
             System.out.println("A switch swapped");
             aPress = m_oi.getA();
-        }
+        }*/
     }
 
     @Override
     public void autonomousInit() {
+        m_intake.resetPistons();
+        m_lift.resetPistons();
     }
 
     /**
@@ -189,6 +192,11 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
+    @Override
+    public void teleopInit(){
+        m_intake.resetPistons();
+        m_lift.resetPistons();
+    }
     /**
      * This function is called periodically during operator control.
      */
@@ -203,6 +211,7 @@ public class Robot extends TimedRobot {
         operateLift();
         operateDrivetrain();
         operateIntake();
+        operateClimb();
 
         flushOVars();
 
@@ -217,7 +226,13 @@ public class Robot extends TimedRobot {
         climbSpeed = 0;
         intakeSpeed = 0;
     }
-
+    /**
+     * Operate robot climb
+     */
+    public void operateClimb(){
+        //climbSpeed += m_oi.getMainTRight() - m_oi.getMainTLeft();
+        m_climber.set(climbSpeed);
+    }
     /**
      * Operates robot lift
      */

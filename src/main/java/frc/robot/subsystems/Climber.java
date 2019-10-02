@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,8 +22,8 @@ public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private Spark leftSpark = RobotMap.climberSparkLeft;
-  private Spark rightSpark = RobotMap.climberSparkRight;
+  private PWMSpeedController leftMotor = RobotMap.climberLeft;
+  private PWMSpeedController rightMotor = RobotMap.climberRight;
 
   private DoubleSolenoid climbFold = RobotMap.climbDoubleSolenoid;
   private DoubleSolenoid climbClamp = RobotMap.clampDoubleSolenoid;
@@ -35,8 +36,8 @@ public class Climber extends Subsystem {
 
   public void set(double speed){
     speed = Robot.safety(speed);
-    leftSpark.set(speed);
-    rightSpark.set(speed);
+    leftMotor.set(speed);
+    rightMotor.set(speed);
   }
   
   public void toggleFold(){

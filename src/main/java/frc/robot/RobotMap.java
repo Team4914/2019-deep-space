@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -40,20 +41,22 @@ public class RobotMap {
     public static DoubleSolenoid clampDoubleSolenoid;
 
     //Climb
-    public static Spark climberSparkLeft;
-    public static Spark climberSparkRight;
+    //public static Spark climberSparkLeft;
+    //public static Spark climberSparkRight;
+    public static PWMVictorSPX climberLeft;
+    public static PWMVictorSPX climberRight;
 
     public static void init(){
         //todo
         //Drivetrain
         right = new VictorSP(1);
-        left = new VictorSP(3);
+        left = new VictorSP(2);
         
         //Lift
         liftTalon = new TalonSRX(2);
 
         //Intake
-        intakeSpark = new Spark(2);
+        intakeSpark = new Spark(0);
 
         //Pneumatics
         compressor = new Compressor();
@@ -62,11 +65,16 @@ public class RobotMap {
         dumpDoubleSolenoid = new DoubleSolenoid(2, 3);
         
         //Climb
-        climberSparkLeft = new Spark(6);
+        /*climberSparkLeft = new Spark(6);
         climberSparkLeft.setInverted(false);
 
         climberSparkRight = new Spark(5);
         climberSparkRight.setInverted(true);
+        */
+        climberLeft = new PWMVictorSPX(8);
+        climberRight = new PWMVictorSPX(9);
+        climberRight.setInverted(true);
+
         /*
         rightFront = new VictorSP(1);
         rightFront.setInverted(true);
